@@ -20,9 +20,12 @@ stage('Delpoy nodejs application') {
 }
     
 }
-     post {
-        always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+     post{
+        always{
+            mail to: "ankitwal21@gmail.com",
+            subject: "Test Email",
+            body: "Test"
         }
     }
+
 }
