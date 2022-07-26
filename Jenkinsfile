@@ -18,5 +18,11 @@ stage('Delpoy nodejs application') {
                 sh 'echo "deploying application.."'
     }
 }
+    
 }
+     post {
+        always {
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+        }
+    }
 }
