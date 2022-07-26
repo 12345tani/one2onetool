@@ -20,12 +20,12 @@ stage('Delpoy nodejs application') {
 }
     
 }
-     post{
-        always{
-            mail to: "ankitwal21@gmail.com",
-            subject: "Test Email",
-            body: "Test"
-        }
-    }
+    # post{
+     #   always{
+      #      mail to: "raob6730@gmail.com",
+       #     subject: "Test Email",
+        #    body: "Test"
+        #}
+    #}
 
 }
