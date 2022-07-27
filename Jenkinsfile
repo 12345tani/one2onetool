@@ -13,7 +13,7 @@ stages{
                 sh 'echo "testing application.."'
             }
         }
-      stage('Test') { 
+      stage('docker stage') { 
             steps {
                 sh 'docker ps '
             }
