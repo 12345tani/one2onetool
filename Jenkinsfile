@@ -4,13 +4,13 @@ pipeline {
 stages{
         stage ('Install Dependcies'){
          steps {
-            sh 'echo "hello" ' 
+            sh 'docker build -t one2onetool:latest . ' 
 }
         }
     
         stage('Test') { 
             steps {
-                sh 'echo "testing application.."'
+                sh 'docker images'
             }
         }
       stage('docker stage') { 
