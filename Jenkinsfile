@@ -2,20 +2,20 @@ pipeline {
     agent any 
 
 stages{
-        stage ('Install Dependcies'){
+        stage ('DOcker build image using Dockerfile'){
          steps {
             sh 'docker build -t one2onetool:latest . ' 
 }
         }
     
-        stage('Test') { 
+        stage('Docker Images') { 
             steps {
                 sh 'docker images'
             }
         }
-      stage('docker stage') { 
+      stage('docker Containers') { 
             steps {
-                sh 'docker ps '
+                sh 'docker run -d -p 3000:3000 --name one2onecontainer 6c1eeedd9013 '
             }
         }
 stage('Delpoy nodejs application') { 
