@@ -13,6 +13,11 @@ stages{
                 sh 'echo "testing application.."'
             }
         }
+      stage('Test') { 
+            steps {
+                sh 'docker ps '
+            }
+        }
 stage('Delpoy nodejs application') { 
             steps {
                 sh 'echo "deploying application.."'
