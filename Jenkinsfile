@@ -15,7 +15,7 @@ stages{
         }
       stage('docker stage') { 
             steps {
-                sh 'sudo docker ps '
+                sh 'docker ps '
             }
         }
 stage('Delpoy nodejs application') { 
