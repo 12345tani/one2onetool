@@ -20,7 +20,7 @@ stages{
         }
       stage('docker Containers') { 
             steps {
-                sh 'docker run -d -p 3000:3000 --name ${contianername} one2onetool:${imageversion} '
+                sh 'docker run -d -p 3000:3000 --name ${containername} one2onetool:${imageversion} '
             }
         }
 stage('Delpoy nodejs application') { 
