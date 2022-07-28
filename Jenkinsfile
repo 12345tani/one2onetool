@@ -1,10 +1,14 @@
 pipeline {
     agent any 
+    paramters { 
+         string(defaultValue: "1.0.0.0", description: 'Image version ', name: 'imageversion')
+    
+    }
 
 stages{
         stage ('DOcker build image using Dockerfile'){
          steps {
-            sh 'docker build -t one2onetool:latest . ' 
+            sh 'docker build -t one2onetool:${params.imageversion} . ' 
 }
         }
     
@@ -15,7 +19,7 @@ stages{
         }
       stage('docker Containers') { 
             steps {
-                sh 'docker run -d -p 3000:3000 --name one2onecontainer 6c1eeedd9013 '
+                sh 'docker run -d -p 3000:3000 --name one2onecontainer one2onetool:${params.imageversion} '
             }
         }
 stage('Delpoy nodejs application') { 
