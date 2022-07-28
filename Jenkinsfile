@@ -25,7 +25,7 @@ stages{
         }
 stage('Delpoy nodejs application') { 
             steps {
-                sh 'echo "docker ps -a"'
+              sh 'docker ps -a'
     }
 }
     
