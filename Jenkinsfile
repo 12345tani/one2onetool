@@ -1,6 +1,6 @@
 pipeline {
     agent any 
-    paramters { 
+    parameters { 
          string(defaultValue: "1.0.0.0", description: 'Image version ', name: 'imageversion')
     
     }
