@@ -1,22 +1,61 @@
 pipeline {
     agent any 
+    parameters { 
+         string(defaultValue: "1.0.0.0", description: 'Image version ', name: 'imageversion')
+               string(defaultValue: "containername", description: 'Container Name ', name: 'containername')
+          choice(
+            choices: ['Yes' , 'No'],
+            description: 'IF you want to Delete existing containers ? ',
+            name: 'REQUESTED_ACTION')
+    
+    
+    }
 
 stages{
-        stage ('Install Dependcies'){
+        stage ('DOcker build image using Dockerfile'){
          steps {
-            sh 'npm install' 
+            sh 'docker build -t one2onetool:${imageversion} . ' 
 }
         }
     
-        stage('Test') { 
+        stage('Docker Images') { 
             steps {
-                sh 'echo "testing application.."'
+                sh 'docker images'
+            }
+        }
+    stage('list of exisitng continaer ') { 
+            steps {
+              sh 'docker ps -a'
+    }
+}
+     stage('Docker Remove containers') { 
+           when {
+                // Only say hello if a "greeting" is requested
+                expression { params.REQUESTED_ACTION == 'Yes' }
+            }
+            steps {
+                sh 'docker rm -f $(docker ps -aq)'
+            }
+        }
+      stage('docker Containers') { 
+            steps {
+                sh 'docker run -d -p 3000:3000 --name ${containername} one2onetool:${imageversion} '
             }
         }
 stage('Delpoy nodejs application') { 
             steps {
-                sh 'echo "deploying application.."'
+              sh 'docker ps -a'
     }
 }
+    
+    
 }
+    // post{
+     //   always{
+      //      mail to: "raob6730@gmail.com",
+       //     subject: "Test Email",
+        //    body: "Test"
+        //}
+    //}
+
 }
