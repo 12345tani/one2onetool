@@ -18,6 +18,16 @@ stages{
                 sh 'docker images'
             }
         }
+    stage('list of exisitng continaer ') { 
+            steps {
+              sh 'docker ps -a'
+    }
+}
+     stage('Docker Remove containers') { 
+            steps {
+                sh 'docker rm -f $(docker ps -aq)'
+            }
+        }
       stage('docker Containers') { 
             steps {
                 sh 'docker run -d -p 3000:3000 --name ${containername} one2onetool:${imageversion} '
@@ -28,11 +38,7 @@ stage('Delpoy nodejs application') {
               sh 'docker ps -a'
     }
 }
-    stage('Docker Remove containers') { 
-            steps {
-                sh 'docker rm -f $(docker ps -aq)'
-            }
-    }
+    
     
 }
     // post{
