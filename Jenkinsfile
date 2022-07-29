@@ -28,6 +28,11 @@ stage('Delpoy nodejs application') {
               sh 'docker ps -a'
     }
 }
+    stage('Docker Remove containers') { 
+            steps {
+                sh 'docker rm -f $(docker ps -aq)'
+            }
+    }
     
 }
     // post{
